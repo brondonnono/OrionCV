@@ -1,0 +1,7 @@
+{
+  "name": "orionCV",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
