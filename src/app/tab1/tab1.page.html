@@ -1,17 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary" mode="ios">
+    <ion-buttons slot="end">
+        <ion-button (click)="logout()" color="danger">
+          <ion-icon slot="icon-only" name="log-out"></ion-icon>
+        </ion-button>
+    </ion-buttons>
     <ion-title>
-      Tab 1
+      Accueil
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content class="ion-padding">
+  <div class="preview">
+    <ion-avatar (click)="changeImage()">
+      <img *ngIf="profile?.imageUrl; else placeholder_avatar" [src]="profile.imageUrl" />
+      <ng-template #placeholder_avatar>
+        <div class="fallback">
+          <p>Choisissez une photo</p>
+        </div>
+      </ng-template>
+    </ion-avatar>
+  </div>
 </ion-content>

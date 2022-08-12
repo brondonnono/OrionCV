@@ -1,9 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+<ion-header mode="ios">
+  <ion-toolbar color="primary">
+    <ion-title>Authentification</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <form [formGroup]="credentials" (ngSubmit)="login()">
 
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-label position="floating">Adresse email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+      <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">
+        Adresse mail incorrecte
+      </ion-note>
+    </ion-item>
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="{{ getPasswordType() }}" formControlName="password"></ion-input>
+      <ion-icon slot="end" name="eye" *ngIf="!isVisible" (click)="changePasswordVisibility()"></ion-icon>
+      <ion-icon slot="end" name="eye-off" *ngIf="isVisible" (click)="changePasswordVisibility()"></ion-icon>
+      <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">
+        Le mot de passe doit avoir minimum 6 caractères
+      </ion-note>
+    </ion-item>
+
+    <ion-button type="submit" expand="full" mode="ios" [disabled]="!credentials.valid"> Se connecter </ion-button>
+    <ion-button type="button" expand="full" (click)="register()" mode="ios"> Créer un compte </ion-button>
+  </form>
 </ion-content>
