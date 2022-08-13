@@ -21,6 +21,10 @@ const routes: Routes = [
     ...canActivate(redirectUnauthorizedToLogin)
   },
   {
+    path: 'speech',
+    loadChildren: () => import('./speech/speech.module').then( m => m.SpeechPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'

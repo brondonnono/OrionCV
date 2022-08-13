@@ -1,17 +1,21 @@
 ion-avatar {
-    width: 128px;
-    height: 128px;
+    width: 100px;
+    height: 100px;
 }
 
 .preview {
-    margin-top: 50px;
+    margin-top: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+ion-searchbar {
+    padding: 0;
 }
 
 .fallback {
-    width: 128px;
-    height: 128px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background: #bfbfbf;
 

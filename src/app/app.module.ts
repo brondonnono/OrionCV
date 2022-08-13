@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { from } from 'rxjs';
+import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +25,13 @@ import { environment } from 'src/environments/environment.prod';
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { 
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy 
+    },
+    SpeechRecognition
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
