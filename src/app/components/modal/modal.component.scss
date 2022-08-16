@@ -1,0 +1,29 @@
+ion-img {
+    width: auto;
+    height: auto;
+}
+
+.description {
+    h5 {
+        color: #2a2a2a;
+        padding-top: 10px;
+    }
+
+    p {
+        color: #656565;
+    }
+}
+
+.separator {
+    hr {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background: #e2e2e2;
+    }
+}
+
+.level {
+    margin-top: 16px;
+    color: #2a2a2a;
+}

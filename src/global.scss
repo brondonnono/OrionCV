@@ -44,6 +44,13 @@
     justify-content: space-between;
 }
 
+.flex-row-evenly {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 .text-center {
     text-align: center;
 }

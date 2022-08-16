@@ -1,9 +1,10 @@
+import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NavParams } from '@ionic/angular';
 import { SpeechRecognition } from '@awesome-cordova-plugins/speech-recognition/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +20,8 @@ import { ForgotComponent } from './components/forgot/forgot.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ForgotComponent
+    ForgotComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule, 
@@ -37,11 +39,13 @@ import { ForgotComponent } from './components/forgot/forgot.component';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy 
     },
-    SpeechRecognition
+    SpeechRecognition,
+    NavParams
   ],
   bootstrap: [AppComponent],
   exports: [
-    ForgotComponent
+    ForgotComponent,
+    ModalComponent,
   ],
 })
 export class AppModule { }

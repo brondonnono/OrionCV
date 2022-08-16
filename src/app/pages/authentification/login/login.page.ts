@@ -1,8 +1,8 @@
-import { StorageService } from './../../services/storage.service';
-import { AuthService } from './../../services/auth.service';
+import { UtilService } from '../../../services/util.service';
+import { StorageService } from '../../../services/storage.service';
+import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController } from '@ionic/angular';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
@@ -19,10 +19,9 @@ export class LoginPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private loadingController: LoadingController,
-    private alertController: AlertController,
     private authService: AuthService,
     private storageService: StorageService,
+    private utilService: UtilService,
     public navigationService: NavigationService,
   ) { }
 
@@ -30,7 +29,7 @@ export class LoginPage implements OnInit {
   get email() {
     return this.credentials.get('email');
   }
-
+ 
   get password() {
     return this.credentials.get('password');
   }
@@ -43,11 +42,10 @@ export class LoginPage implements OnInit {
   }
 
   async register() {
-    const loading = await this.loadingController.create();
-    await loading.present();
+    await this.utilService.showLoader();
 
     const user = await this.authService.register(this.credentials.value);
-    await loading.dismiss();
+    await this.utilService.dismiss();
 
     if (user) {
       const result = await this.storageService.storeUserEmail(this.email.value);
@@ -55,10 +53,10 @@ export class LoginPage implements OnInit {
         this.navigationService.goto('');
       else {
         this.authService.deleteUser();
-        this.showAlert('Echec d\'inscription', 'Veuillez reéssayer SVP!');
+        this.utilService.showAlert('Echec d\'inscription', 'Veuillez reéssayer SVP!');
       }
     } else {
-      this.showAlert('Echec d\'inscription', 'Veuillez reéssayer SVP!');
+      this.utilService.showAlert('Echec d\'inscription', 'Veuillez reéssayer SVP!');
     }
   }
 
@@ -69,30 +67,20 @@ export class LoginPage implements OnInit {
   async login() {
     if (this.isCredentials()) {
       if (this.credentials.valid) {
-        const loading = await this.loadingController.create();
-        await loading.present();
+        await this.utilService.showLoader();
   
         const user = await this.authService.login(this.credentials.value);
-        await loading.dismiss();
+        await this.utilService.dismiss();
   
         if (user) {
           this.navigationService.goto('');
         } else {
-          this.showAlert('Echec de connexion', 'Veuillez reéssayer SVP!');
+          this.utilService.showAlert('Echec de connexion', 'Veuillez reéssayer SVP!');
         }
       }
     } else {
-      this.showAlert('Informations requises', 'Tous les champs sont obligatoires');
+      this.utilService.showAlert('Informations requises', 'Tous les champs sont obligatoires');
     }
-  }
-
-  async showAlert(header, message) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK'],
-    });
-    alert.present();
   }
 
   public getPasswordType() {

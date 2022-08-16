@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
-import { AvatarService } from '../services/avatar.service';
+import { AuthService } from '../../services/auth.service';
+import { AvatarService } from '../../services/avatar.service';
 import { Camera, CameraResultType, CameraSource } from "@Capacitor/camera";
 
 @Component({

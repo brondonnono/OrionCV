@@ -1,7 +1,9 @@
+import { NavigationService } from 'src/app/services/navigation.service';
+import { StorageService } from './../../services/storage.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { AvatarService } from '../services/avatar.service';
+import { AuthService } from '../../services/auth.service';
+import { AvatarService } from '../../services/avatar.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,15 +13,28 @@ import { AvatarService } from '../services/avatar.service';
 export class Tab1Page {
   profile = null;
   // placeholder_avatar = 'assets/images/avatars/default.png';
+  menus = [];
 
   constructor(
     private avatarService: AvatarService,
     private authService: AuthService,
+    private storageService: StorageService,
+    public navigationService: NavigationService,
     private router: Router,
   ) {
     this.avatarService.getUserProfile().subscribe(data => {
       this.profile = data;
     });
+    this.getMenus();
+  }
+
+  async getMenus() {
+    const result = await this.storageService.getMenuItems();
+    if (result) {
+      result.forEach((res) => {
+        this.menus.push(res.data());
+      });
+    }
   }
 
   async logout() {
@@ -27,8 +42,8 @@ export class Tab1Page {
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
-  goto(url) {
-    this.router.navigateByUrl(url, { replaceUrl: true });
+  showDetails(itemName) {
+    this.router.navigateByUrl(`/details?itemName=${itemName}`);
   }
 
   showNotifications() { }
