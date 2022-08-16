@@ -5,6 +5,7 @@ import {
   redirectLoggedInTo,
   canActivate,
 } from '@angular/fire/auth-guard';
+import { ForgotComponent } from './components/forgot/forgot.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'speech',
     loadChildren: () => import('./speech/speech.module').then( m => m.SpeechPageModule)
+  },
+  {
+    path: 'forgot',
+    component: ForgotComponent
   },
   {
     path: '**',

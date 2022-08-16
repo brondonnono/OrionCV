@@ -1,10 +1,10 @@
-<ion-header mode="ios">
+<!-- <ion-header mode="ios">
   <ion-toolbar color="primary">
     <ion-title>Authentification</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content class="ion-padding">
+<!-- <ion-content class="ion-padding">
   <form [formGroup]="credentials" (ngSubmit)="login()">
 
     <ion-item fill="solid" class="ion-margin-bottom">
@@ -28,4 +28,65 @@
     <ion-button type="submit" expand="full" mode="ios" [disabled]="!credentials.valid"> Se connecter </ion-button>
     <ion-button type="button" expand="full" (click)="register()" mode="ios"> Créer un compte </ion-button>
   </form>
+</ion-content> -->
+
+<ion-content>
+  <div class="header">
+    <div class="logo">
+      <img src="assets/icon/logo.png">
+    </div>
+    <h3>Le recrutement commence par le CV</h3>
+  </div>
+
+  <form [formGroup]="credentials" (ngSubmit)="login()">
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-label position="floating">Adresse email</ion-label>
+      <ion-input type="email" formControlName="email" required></ion-input>
+      <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">
+        Adresse mail incorrecte
+      </ion-note>
+      <ion-note slot="error" *ngIf="errorMessages.email">
+        {{ errorMessages?.email }}
+      </ion-note>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-icon name="lock-closed" slot="start"></ion-icon>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="{{ getPasswordType() }}" formControlName="password"></ion-input>
+      <ion-icon slot="end" name="eye" *ngIf="!isVisible" (click)="changePasswordVisibility()"></ion-icon>
+      <ion-icon slot="end" name="eye-off" *ngIf="isVisible" (click)="changePasswordVisibility()"></ion-icon>
+      <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">
+        Le mot de passe doit avoir minimum 6 caractères
+      </ion-note>
+      <ion-note slot="error" *ngIf="errorMessages.password">
+        {{ errorMessages?.password }}
+      </ion-note>
+    </ion-item>
+  </form>
+  <div class="forgot">
+    <h3>
+      <a (click)="navigationService.goto('/forgot')">
+        Mot de passe oublié?
+      </a>
+    </h3>
+  </div>
+
+  <div [hidden]="isLoading" class="button" (click)="login()">
+    Connexion
+    <ion-icon name="chevron-forward" slot="end"></ion-icon>
+  </div>
+
+  <div class="footer">
+    <h3>Pas encore de compte?</h3>
+  </div>
+
+  <div class="footer2">
+    <div></div>
+    <div class="button-right" (click)="register()">
+      <ion-icon name="log-in" slot="start"></ion-icon>
+      Inscrivez-vous
+    </div>
+  </div>
+
 </ion-content>

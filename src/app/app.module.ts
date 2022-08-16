@@ -13,9 +13,13 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment.prod';
+import { ForgotComponent } from './components/forgot/forgot.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    ForgotComponent
+  ],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
@@ -33,5 +37,8 @@ import { environment } from 'src/environments/environment.prod';
     SpeechRecognition
   ],
   bootstrap: [AppComponent],
+  exports: [
+    ForgotComponent
+  ],
 })
 export class AppModule { }
