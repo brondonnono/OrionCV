@@ -1,0 +1,95 @@
+ion-content {
+    --background: #b92b27; /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to left, #667db6, #0082c8, #0082c8, #667db6); /* Chrome 10-25, Safari 5.1-6 */
+    --background: linear-gradient(
+        to left,
+        #667db6,
+        #0082c8,
+        #0082c8,
+        #667db6
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    // --background: url(../../assets/images/bg/2.png);
+
+    border-left: 7px solid var(--ion-color-success);
+    border-right: 7px solid #f84100;
+
+    .header {
+        padding: 0 10vw;
+        margin-top: 1.5em;
+        color: #fff;
+        .logo {
+            text-align: center;
+            img {
+                width: 60%;
+            }
+        }
+        h3 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: codePro-MediumItalic;
+        }
+    }
+
+    .form {
+        padding: 0 10vw;
+        margin-top: 70px;
+        ion-item {
+            --background: #20508a;
+            border-bottom: none;
+            border-radius: 25px;
+            margin-bottom: 22px;
+            --color: #fff;
+        }
+    }
+
+    ion-note {
+        font-size: initial;
+        color: var(--ion-color-warning, gold);
+    }
+
+    .button {
+        width: 50vw;
+        color: white;
+        background-color: var(--ion-color-success);
+        margin-top: 70px;
+        padding: 20px;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        justify-content: flex-end;
+        font-family: codePro-semiBoldItalic;
+        ion-icon {
+            margin-left: 5px;
+        }
+    }
+
+    .button-right {
+        width: 60vw !important;
+        background-color: #f84100;
+        margin-top: 40px;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+        display: flex;
+        color: white;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        font-family: codePro-semiBoldItalic;
+        ion-icon {
+            margin-right: 10px;
+        }
+    }
+
+    .footer2 {
+        display: flex;
+        justify-content: space-between;
+    }
+}

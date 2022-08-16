@@ -1,3 +1,35 @@
-<p>
-  forgot works!
-</p>
+<ion-content>
+  <div class="header">
+    <div class="logo">
+      <img src="assets/icon/logo.png">
+    </div>
+    <h3>Mot de passe oublié</h3>
+  </div>
+
+  <form [formGroup]="credentials" (ngSubmit)="resetPassword()">
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-label position="floating">Adresse email</ion-label>
+      <ion-input type="email" formControlName="email" required></ion-input>
+      <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">
+        Adresse mail incorrecte
+      </ion-note>
+      <ion-note slot="error" *ngIf="errorMessages.email">
+        {{ errorMessages?.email }}
+      </ion-note>
+    </ion-item>
+  </form>
+  <div [hidden]="isLoading" class="button" (click)="resetPassword()">
+    Envoyer
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </div>
+
+  <div class="footer2">
+    <div></div>
+    <div class="button-right" routerLink="/login">
+      <ion-icon name="close-circle"></ion-icon>
+      Annuler
+    </div>
+  </div>
+
+</ion-content>
